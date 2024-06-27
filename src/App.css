@@ -4,3 +4,24 @@
   padding: 2rem;
   text-align: center;
 }
+
+img {
+  width: 200px;
+}
+
+main {
+  background-image: url('./assets/wallpaperflare.com_wallpaper.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.cards {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.card {
+  background-color: white;
+  width: 50%;
+}

@@ -47,12 +47,11 @@ function App() {
     <>
     <header>Memory Card</header>
     <main>
-    {icons.map(icon => (
-        <div key={icon.name}>
-          <h3>{icon.name}</h3>
-          <img src={icon.imageUrl} alt={icon.name} />
-        </div>
-      ))}
+      <div className="cards">
+        {icons.map(icon => (
+          <Card name={icon.name} icon={icon.imageUrl} />
+        ))}
+      </div>
     </main>
     <footer>
       <div className="current">Current score: {currentScore}</div>
