@@ -1,2 +1,10 @@
-/*https://genshin.jmp.blue/characters/albedo/gacha-splash*/
-/*https://genshin.jmp.blue/characters/albedo*/
+
+function Card({name, icon}) {
+    return (
+        <>
+        <div className="card"></div>
+        </>
+    )
+}
+
+export {Card};
