@@ -1,27 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 #root {
-  max-width: 1280px;
+  width: 100vw;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  font-family: "Ubuntu", sans-serif;
+}
+
+header {
+  padding: 20px;
+  background-color: #254846;
+  color: white;
+  font-size: 1.5em;
+}
+
+footer {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background-color: #514d6d;
+  color: white;
 }
 
 img {
-  width: 200px;
+  width: 60%;
 }
 
 main {
   background-image: url('./assets/wallpaperflare.com_wallpaper.jpg');
   background-attachment: fixed;
   background-size: cover;
+  padding: 20px;
+  min-height: 730px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .cards {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 30px;
+  justify-content: center;
 }
 
 .card {
-  background-color: white;
-  width: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  border: 5px solid white;
+}
+
+.loading {
+  background-image: url('https://upload-os-bbs.hoyolab.com/upload/2021/04/21/96734061/6d02d31937b15d6f9cb3b360aece900b_5744561963691469419.gif');
+  background-size: cover;
+  width: 500px;
+  height: 500px;
+}
+
+.card:hover {
+  background-color: rgba(196, 196, 196, 0.9);
+  transition: background-color 0.5s ease;
 }

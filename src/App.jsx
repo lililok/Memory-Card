@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react'
-import { Card } from "./components/Card";
+import Card from './components/Card';
 import './App.css'
-
-/*https://genshin.jmp.blue/characters/albedo/gacha-splash*/
-/*https://genshin.jmp.blue/characters/albedo*/
 
 function App() {
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [characters, setCharacters] = useState([]);
   const [icons, setIcons] = useState([]);
+  const [clicked, setClicked] = useState([]);
   const characterIds = [0, 20, 23, 32, 38, 46, 70, 3, 33, 42];
+  const [loading, setLoading] = useState(false);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -20,6 +19,7 @@ function App() {
 }
 
   useEffect(() => {
+    setLoading(true);
     fetch("https://genshin.jmp.blue/characters/all")
     .then(response => response.json())
     .then(data => {
@@ -39,19 +39,42 @@ function App() {
               return { name: character.name, imageUrl };
             })
         )
-      ).then(icons => setIcons(icons));
+      ).then((icons) => {
+        setIcons(icons);
+        setLoading(false);
+      });
     }
   }, [characters]);
+
+
+  function handleCardClick(name) {
+    const newScore = currentScore + 1;
+    if (clicked.includes(name)) {
+      if (newScore - 1 > bestScore) {
+        setBestScore(newScore - 1);
+      }
+      setCurrentScore(0);
+      setClicked([]);
+    } else {
+      setCurrentScore(newScore);
+      setClicked([...clicked, name]);
+    }
+    shuffleArray(icons);
+  }
 
   return (
     <>
     <header>Memory Card</header>
     <main>
-      <div className="cards">
-        {icons.map(icon => (
-          <Card name={icon.name} icon={icon.imageUrl} />
-        ))}
-      </div>
+        {loading ? (
+          <div className="loading"></div>
+        ) : (
+          <div className="cards">
+            {icons.map((icon) => (
+              <Card key={icon.name} name={icon.name} icon={icon.imageUrl} onClick={() => handleCardClick(icon.name)} />
+            ))}
+          </div>
+        )}
     </main>
     <footer>
       <div className="current">Current score: {currentScore}</div>
@@ -60,5 +83,7 @@ function App() {
     </>
   )
 }
+
+/* card onclick shuffle + count*/
 
 export default App
