@@ -8,7 +8,6 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [icons, setIcons] = useState([]);
   const [clicked, setClicked] = useState([]);
-  const characterIds = [0, 20, 23, 32, 38, 46, 70, 3, 33, 42];
   const [loading, setLoading] = useState(false);
 
   function shuffleArray(array) {
@@ -23,8 +22,10 @@ function App() {
     fetch("https://genshin.jmp.blue/characters/all")
     .then(response => response.json())
     .then(data => {
-      const selectedCharacters = characterIds.map(id => data[id]);
-      setCharacters(selectedCharacters);
+      const filteredData = data.filter(item => 
+        item.nation === "Mondstadt" && item.name !== "Thoma" && item.name !== "Mika"
+      );
+      setCharacters(filteredData.slice(0, 10));
     })
   },[])
 
